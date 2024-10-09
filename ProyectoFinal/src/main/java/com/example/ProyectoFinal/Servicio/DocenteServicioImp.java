@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.ProyectoFinal.Entidad.Docente;
 import com.example.ProyectoFinal.Repositorio.DocenteRepositorio;
 
 import jakarta.persistence.EntityNotFoundException;
 
+@Service
 public class DocenteServicioImp implements DocenteServicio {
 	private final DocenteRepositorio docenteRepositorio;
 	@Autowired

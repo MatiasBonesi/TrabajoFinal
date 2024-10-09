@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,14 +17,16 @@ import jakarta.persistence.Table;
 public class Curso {
 	@Id
 	private Long id;
-	@Column(name="tema_id")
-	private Long tema_id;
+	@ManyToOne
+	@JoinColumn(name="tema_id")
+	private Tema tema;
 	@Column(name="fechaInicio")
 	private Date fechaInicio;
 	@Column(name="fechaFin")
 	private Date fechaFin;
-	@Column(name="docente_legajo")
-	private Long docente_legajo;
+	@ManyToOne
+	@JoinColumn(name="docente_legajo")
+	private Docente docente_legajo;
 	@Column(name="precio")
 	private Double precio;
 	
@@ -36,11 +39,11 @@ public class Curso {
     private List<Alumno> alumnos;
 	
 		
-	public Curso(Long id, Long tema_id, Date fechaInicio, Date fechaFin, Long docente_legajo, Double precio,
+	public Curso(Long id, Tema tema, Date fechaInicio, Date fechaFin, Docente docente_legajo, Double precio,
 				List<Alumno> alumnos) {
 			super();
 			this.id = id;
-			this.tema_id = tema_id;
+			this.tema = tema;
 			this.fechaInicio = fechaInicio;
 			this.fechaFin = fechaFin;
 			this.docente_legajo = docente_legajo;
@@ -58,12 +61,12 @@ public class Curso {
 		this.id = id;
 	}
 
-	public Long getTema_id() {
-		return tema_id;
+	public Tema getTema() {
+		return tema;
 	}
 
-	public void setTema_id(Long tema_id) {
-		this.tema_id = tema_id;
+	public void setTema(Tema tema) {
+		this.tema = tema;
 	}
 
 	public Date getFechaInicio() {
@@ -82,11 +85,11 @@ public class Curso {
 		this.fechaFin = fechaFin;
 	}
 
-	public Long getDocente_legajo() {
+	public Docente getDocente_legajo() {
 		return docente_legajo;
 	}
 
-	public void setDocente_legajo(Long docente_legajo) {
+	public void setDocente_legajo(Docente docente_legajo) {
 		this.docente_legajo = docente_legajo;
 	}
 

@@ -45,7 +45,7 @@ public class CursoServicioImp implements CursoServicio {
 	public Curso actualizarCurso(Long id,Curso cursomodificado) {
 		Curso cursoExistente = cursoRepositorio.findById(id)
 	            .orElseThrow(() -> new EntityNotFoundException("Curso no encontrado con id: " + id));
-		cursoExistente.setTema_id(cursomodificado.getTema_id());
+		cursoExistente.setTema(cursomodificado.getTema());
 		cursoExistente.setFechaInicio(cursomodificado.getFechaInicio());
 		cursoExistente.setFechaFin(cursomodificado.getFechaFin());
 		cursoExistente.setDocente_legajo(cursomodificado.getDocente_legajo());
@@ -64,7 +64,7 @@ public class CursoServicioImp implements CursoServicio {
 	@Override
 	public List<String> obtenerAlumnosPorDocente(Long docente_legajo){
 		 return cursoRepositorio.findAll().stream()
-		            .filter(curso -> curso.getDocente_legajo().equals(docente_legajo) )
+		            .filter(curso -> curso.getDocente_legajo().getLegajo().equals(docente_legajo) )
 		            .flatMap(curso -> curso.getAlumnos().stream())
 		            .map(alumno -> alumno.getNombre())
 		            .collect(Collectors.toList());
