@@ -52,6 +52,11 @@ public class CursoControlador {
         }
         return ResponseEntity.ok(alumnos);
     }
+
+    @GetMapping("/cursos/vigentes")
+    public List<Curso> obtenerCursosVigentes() {
+        return cursoServicio.obtenerCursosVigentes();
+    }
     @PostMapping("/cursos")
     public ResponseEntity<Curso> guardarCurso(@RequestBody Curso curso){
     	Curso nuevoCurso = cursoServicio.guardarCurso(curso);

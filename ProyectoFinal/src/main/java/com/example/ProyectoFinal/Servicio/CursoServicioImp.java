@@ -2,7 +2,7 @@ package com.example.ProyectoFinal.Servicio;
 
 
 import java.sql.Date;
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,6 +60,11 @@ public class CursoServicioImp implements CursoServicio {
 		  return cursoRepositorio.findAll().stream()
 		            .filter(curso -> curso.getFechaFin().equals(fechaFin))
 		            .collect(Collectors.toList());
+	}
+	@Override
+	public List<Curso> obtenerCursosVigentes(){
+		 Date fechaActual = Date.valueOf(LocalDate.now());
+	        return cursoRepositorio.findCursosVigentes(fechaActual);
 	}
 	@Override
 	public List<String> obtenerAlumnosPorDocente(Long docente_legajo){
