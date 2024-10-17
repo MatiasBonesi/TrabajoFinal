@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,20 +31,22 @@ public class CursoControlador {
     public String funcionMostrar(){
 		return "Bienvenidos";
 	}
-	
+	@CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/cursos")
 	public List<Curso> obtenerTodosLosCursos(){
     	return cursoServicio.obtenerTodosLosCursos();
     }
+	@CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/cursos/{id}")
     public Optional<Curso> obtenerUnCurso(@PathVariable Long id){
     	return cursoServicio.obtenerUnCurso(id);
     }
-    
+	@CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/cursos/fecha-fin")
     public List<Curso> obtenerCursosPorFechaFin(@RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
         return cursoServicio.obtenerCursoporFechaFin(java.sql.Date.valueOf(fechaFin));
     }
+	@CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/docente/{docente_legajo}/alumnos")
     public ResponseEntity<List<String>> obtenerAlumnosPorDocente(@PathVariable("docente_legajo") Long docente_legajo) {
         List<String> alumnos = cursoServicio.obtenerAlumnosPorDocente(docente_legajo);
@@ -53,20 +56,19 @@ public class CursoControlador {
         return ResponseEntity.ok(alumnos);
     }
 
-    @GetMapping("/cursos/vigentes")
-    public List<Curso> obtenerCursosVigentes() {
-        return cursoServicio.obtenerCursosVigentes();
-    }
+	@CrossOrigin(origins="http://localhost:4200")
     @PostMapping("/cursos")
     public ResponseEntity<Curso> guardarCurso(@RequestBody Curso curso){
     	Curso nuevoCurso = cursoServicio.guardarCurso(curso);
     	return new ResponseEntity<>(nuevoCurso,HttpStatus.CREATED);
     }
+	@CrossOrigin(origins="http://localhost:4200")
     @PutMapping("/cursos/{id}")
     public ResponseEntity<Curso> modificarCurso(@PathVariable Long id, @RequestBody Curso curso){
     	Curso cursoActualizado= cursoServicio.actualizarCurso(id, curso);
     	return new ResponseEntity<>(cursoActualizado,HttpStatus.OK);
     }
+	@CrossOrigin(origins="http://localhost:4200")
     @DeleteMapping("/cursos/{id}")
     public ResponseEntity<Void> eliminarCurso(@PathVariable Long id){
     	cursoServicio.eliminarCurso(id);

@@ -61,15 +61,12 @@ public class CursoServicioImp implements CursoServicio {
 		            .filter(curso -> curso.getFechaFin().equals(fechaFin))
 		            .collect(Collectors.toList());
 	}
-	@Override
-	public List<Curso> obtenerCursosVigentes(){
-		 Date fechaActual = Date.valueOf(LocalDate.now());
-	        return cursoRepositorio.findCursosVigentes(fechaActual);
-	}
+
 	@Override
 	public List<String> obtenerAlumnosPorDocente(Long docente_legajo){
+		Date fechaActual = Date.valueOf(LocalDate.now());
 		 return cursoRepositorio.findAll().stream()
-		            .filter(curso -> curso.getDocente_legajo().getLegajo().equals(docente_legajo) )
+		            .filter(curso -> curso.getDocente_legajo().getLegajo().equals(docente_legajo) && curso.getFechaFin().compareTo(fechaActual) >= 0)  
 		            .flatMap(curso -> curso.getAlumnos().stream())
 		            .map(alumno -> alumno.getNombre())
 		            .collect(Collectors.toList());

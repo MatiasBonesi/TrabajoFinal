@@ -15,6 +15,5 @@ public interface CursoServicio {
 	public Curso actualizarCurso(Long id,Curso cursomodificado );
 	public void eliminarCurso(Long id);
 	public List<Curso> obtenerCursoporFechaFin(Date fechaFin);
-	public List<Curso> obtenerCursosVigentes();
 	public List<String> obtenerAlumnosPorDocente(Long docente_legajo);
 }
