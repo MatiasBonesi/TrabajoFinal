@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Lista de Temas</h2>
+    
+    <!-- Botón para agregar un nuevo tema -->
+    <button class="btn btn-primary mb-3" (click)="agregarTema()">Agregar Tema</button>
+    
+    <!-- Tabla para mostrar los temas -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tema of temas">
+          <td>{{ tema.id }}</td>
+          <td>{{ tema.nombre }}</td>
+          <td>{{ tema.descripcion }}</td>
+          <td>
+            <!-- Botones de acción -->
+            <button class="btn btn-info btn-sm" (click)="editarTema(tema.id)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarTema(tema.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

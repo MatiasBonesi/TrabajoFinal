@@ -1,0 +1,22 @@
+<h2>Lista de Alumnos</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let alumno of alumnos">
+      <td>{{ alumno.nombre }}</td>
+      <td>{{ alumno.fechaNacimiento | date: 'dd/MM/yyyy' }}</td>
+      <td>
+        <button (click)="editarAlumno(alumno.id)">Editar</button>
+        <button (click)="eliminarAlumno(alumno.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="agregarAlumno()">Agregar Alumno</button>
