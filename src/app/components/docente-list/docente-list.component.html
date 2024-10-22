@@ -1,1 +1,28 @@
-<p>docente-list works!</p>
+<div class="container">
+    <h2>Lista de Docentes</h2>
+    
+    <!-- Botón para agregar un nuevo Docente -->
+    <button class="btn btn-primary mb-3" (click)="agregarDocente()">Agregar Docente</button>
+    
+    <!-- Tabla para mostrar los Docentes -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Legajo</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let docente of docentes">
+          <td>{{ docente.legajo }}</td>
+          <td>{{ docente.nombre }}</td>
+          <td>
+            <!-- Botones de acción -->
+            <button class="btn btn-info btn-sm" (click)="editarDocente(docente.legajo)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarDocente(docente.legajo)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

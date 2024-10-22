@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>{{ isEdit ? 'Editar Docente' : 'Agregar Docente' }}</h2>
+  <form #f="ngForm" (ngSubmit)="f.form.valid && guardarDocente()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <!-- Agregamos la referencia #nombre para acceder a los errores del campo -->
+        <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            [(ngModel)]="docente.nombre"
+            name="nombre"
+            required
+            placeholder="Nombre y Apellido"
+            minlength="3"
+            maxlength="30"
+            #nombre="ngModel"
+            [ngClass]="{ 'is-invalid': f.submitted && nombre.invalid }"
+        />
+        <!-- Accedemos a los errores usando la referencia #nombre -->
+        <div *ngIf="f.submitted && nombre.errors" class="invalid-feedback">
+            <div *ngIf="nombre.errors['required']">El nombre es obligatorio.</div>
+            <div *ngIf="nombre.errors['minlength']">El nombre debe tener al menos 3 caracteres.</div>
+            <div *ngIf="nombre.errors['maxlength']">El nombre debe tener como máximo 30 caracteres.</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Guardar' }}</button>
+  </form>
+</div>

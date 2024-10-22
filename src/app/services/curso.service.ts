@@ -7,38 +7,35 @@ import { Curso } from '../models/curso.model';
   providedIn: 'root'
 })
 export class CursoService {
-  private apiUrl = 'http://localhost:8080/cursos'; // Cambia a tu URL base
+  private apiUrl = 'http://localhost:8080/cursos'; 
 
   constructor(private http: HttpClient) { }
- // Obtener todos los docentes
- obtenerTodosLosDocentes(): Observable<Curso[]> {
+ // Obtener todos los Cursos
+ obtenerTodosLosCursos(): Observable<Curso[]> {
   return this.http.get<Curso[]>(`${this.apiUrl}`);
   }
 
 // Obtener un docente por legajo
-  obtenerDocentePorLegajo(id: number): Observable<Curso> {
+  obtenerCursoPorId(id: number): Observable<Curso> {
   return this.http.get<Curso>(`${this.apiUrl}/${id}`);
   } 
 
 // Crear un nuevo Curso
-  guardarTema(curso: Curso): Observable<Object> {
+  guardarCurso(curso: Curso): Observable<Object> {
   return this.http.post(`${this.apiUrl}`, curso);
   }
 
 // Actualizar un Curso
-  actualizarTema(id: number, curso: Curso): Observable<Object> {
+  actualizarCurso(id: number, curso: Curso): Observable<Object> {
   return this.http.put(`${this.apiUrl}/${id}`, curso);
   }
 
 // Eliminar un Curso
-  eliminarDocente(id: number): Observable<Object> {
+  eliminarCurso(id: number): Observable<Object> {
   return this.http.delete(`${this.apiUrl}/${id}`);
   }
 //Obtener un curso determinado por su fecha de finalizacion
-  getCursosPorFechaFin(fecha: string): Observable<Curso[]> {
+  getCursosPorFechaFin(fecha: Date): Observable<Curso[]> {
     return this.http.get<Curso[]>(`${this.apiUrl}/fecha-fin?fecha=${fecha}`);
   }
-
-
-  
 }

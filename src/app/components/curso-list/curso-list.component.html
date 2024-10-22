@@ -1,1 +1,38 @@
-<p>curso-list works!</p>
+<div class="container">
+    <h2>Lista de Cursos</h2>
+    
+    <!-- Botón para agregar un nuevo tema -->
+    <button class="btn btn-primary mb-3" (click)="agregarCurso()">Agregar Curso</button>
+    
+    <!-- Tabla para mostrar los temas -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tema</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th>Docente</th>
+          <th>Precio</th>
+          <th>Alumnos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos">
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.tema }}</td>
+          <td>{{ curso.fechaInicio }}</td>
+          <td>{{ curso.fechaFin }}</td>
+          <td>{{ curso.docente }}</td>
+          <td>{{ curso.precio  }}</td>
+          <td>{{ curso.alumnos }}</td>
+          <td>
+            <!-- Botones de acción -->
+            <button class="btn btn-info btn-sm" (click)="editarCurso(curso.id)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarCurso(curso.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

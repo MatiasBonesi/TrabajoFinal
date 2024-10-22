@@ -24,12 +24,12 @@ export class DocenteService {
   }
 
   // Crear un nuevo docente
-  guardarTema(docente: Docente): Observable<Object> {
+  guardarDocente(docente: Docente): Observable<Object> {
     return this.http.post(`${this.apiUrl}`, docente);
   }
 
   // Actualizar un docente
-  actualizarTema(legajo: number, docente: Docente): Observable<Object> {
+  actualizarDocente(legajo: number, docente: Docente): Observable<Object> {
     return this.http.put(`${this.apiUrl}/${legajo}`, docente);
   }
 

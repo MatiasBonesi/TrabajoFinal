@@ -9,7 +9,5 @@ export class Curso {
     docente!: Docente;
     precio!: number;
     alumnos!: Alumno[];
-
-   
   }
   

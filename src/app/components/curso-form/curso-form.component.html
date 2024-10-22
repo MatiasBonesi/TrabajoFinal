@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>{{ isEdit ? 'Editar Curso' : 'Agregar Curso' }}</h2>
+    <form (ngSubmit)="guardarCurso()">
+      <div class="form-group">
+        <label for="tema">Tema</label>
+        <select class="form-control" id="tema" [(ngModel)]="curso.tema" name="tema" required>
+          <option *ngFor="let tema of temas" [value]="tema">{{ tema.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="fechaInicio">Fecha de Inicio</label>
+        <input class="form-control" id="fechaInicio" [(ngModel)]="curso.fechaInicio" name="fechaInicio" type="date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="fechaFin">Fecha de Finalización</label>
+        <input class="form-control" id="fechaFin" [(ngModel)]="curso.fechaFin" name="fechaFin" type="date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="docente">Docente</label>
+        <select class="form-control" id="docente" [(ngModel)]="curso.docente" name="docente" required>
+          <option *ngFor="let docente of docentes" [value]="docente">{{ docente.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input class="form-control" id="precio" [(ngModel)]="curso.precio" name="precio" type="number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="alumnos">Alumnos</label>
+        <select class="form-control" id="alumnos" [(ngModel)]="curso.alumnos" name="alumnos" multiple required>
+          <option *ngFor="let alumno of alumnos" [value]="alumno">{{ alumno.nombre }}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Guardar' }}</button>
+    </form>
+</div>
