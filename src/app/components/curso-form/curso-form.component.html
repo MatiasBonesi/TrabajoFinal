@@ -1,6 +1,7 @@
 <div class="container">
   <h2>{{ isEdit ? 'Editar Curso' : 'Agregar Curso' }}</h2>
   <form (ngSubmit)="guardarCurso()">
+
     <div class="form-group">
       <label for="tema">Tema</label>
       <!-- Usamos la tubería async para obtener los temas -->

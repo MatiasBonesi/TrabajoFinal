@@ -12,7 +12,6 @@ export const routes: Routes = [
     { path: 'temas', component: TemaListComponent },
     { path: 'temas/agregar', component: TemaFormComponent },
     { path: 'temas/editar/:id', component: TemaFormComponent },
-    { path: '', redirectTo: '/temas', pathMatch: 'full' },
     { path: 'alumnos', component: AlumnoListComponent },
     { path: 'alumnos/agregar', component: AlumnoFormComponent },
     { path: 'alumnos/editar/:id', component: AlumnoFormComponent }, 

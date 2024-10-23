@@ -1,7 +1,12 @@
 <div class="container">
   <h2>Lista de Cursos</h2>
   
- 
+  <div class="form-group">
+    <label for="filtroFechaFin">Buscar Curso por Fecha de Finalización:</label>
+    <input class="form-control" id="filtroFechaFin" type="date" [(ngModel)]="filtroFechaFin"> <!-- Vinculamos con filtroFechaFin -->
+    <button class="btn btn-primary mb-3" (click)="buscarCursos()">Buscar</button> <!-- Ejecutamos buscarCursos() en lugar de cursosFiltrados -->
+  </div>
+  
   
   <!-- Tabla para mostrar los cursos -->
   <table class="table table-striped">

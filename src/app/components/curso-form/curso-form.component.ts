@@ -59,7 +59,16 @@ export class CursoFormComponent implements OnInit {
       });
     }
   }
-
+  // Función para manejar la selección de alumnos
+  onAlumnoCheckboxChange(event: any, alumno: any) {
+    if (event.target.checked) {
+      // Añadir alumno a la lista de alumnos seleccionados
+      this.curso.alumnos.push(alumno);
+    } else {
+      // Eliminar alumno de la lista de alumnos seleccionados
+      this.curso.alumnos = this.curso.alumnos.filter((a: any) => a.id !== alumno.id);
+    }
+  }
   guardarCurso(): void {
     if (this.isEdit) {
       this.cursoService.actualizarCurso(this.curso.id, this.curso).subscribe(() => {
