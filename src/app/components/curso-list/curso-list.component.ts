@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Curso } from '../../models/curso.model';
 import { CursoService } from '../../services/curso.service';
 import { Router } from '@angular/router';
+import { Docente } from '../../models/docente.model';
+import { Alumno } from '../../models/alumno.model';
+import { Tema } from '../../models/tema.model';
 
 @Component({
   selector: 'app-curso-list',

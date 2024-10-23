@@ -9,31 +9,48 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TemaService } from '../../services/tema.service';
 import { DocenteService } from '../../services/docente.service';
 import { AlumnoService } from '../../services/alumno.service';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-curso-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './curso-form.component.html',
-  styleUrl: './curso-form.component.css'
+  styleUrls: ['./curso-form.component.css']
 })
 export class CursoFormComponent implements OnInit {
-  curso: Curso = { id:0,tema:new Tema(),fechaInicio: new Date(),fechaFin: new Date(), docente: new Docente(), precio:0,alumnos: [new Alumno()] };
+  curso: Curso = { 
+    id: 0,
+    tema: new Tema(),
+    fechaInicio: new Date(),
+    fechaFin: new Date(),
+    docente_legajo: new Docente(),
+    precio: 0,
+    alumnos: []  // Inicializamos con un array vacío
+  };
   isEdit: boolean = false;
 
+  temas$: Observable<Tema[]> | undefined;  // Ahora puede ser undefined
+  docentes$: Observable<Docente[]> | undefined;  // Ahora puede ser undefined
+  alumnos$: Observable<Alumno[]> | undefined;  // Ahora puede ser undefined
 
   constructor(
     private cursoService: CursoService,
-    private temaServise:TemaService,
-    private docenteServise:DocenteService,
-    private alumnosServise:AlumnoService,
+    private temaService: TemaService,
+    private docenteService: DocenteService,
+    private alumnoService: AlumnoService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
-  temas=this.temaServise.obtenerTodosLosTemas;
-  docentes=this.docenteServise.obtenerTodosLosDocentes;
-  alumnos=this.alumnosServise.obtenerTodosLosAlumnos;
+
   ngOnInit(): void {
+    // Cargar los temas, docentes y alumnos al iniciar el componente
+    this.temas$ = this.temaService.obtenerTodosLosTemas();
+    this.docentes$ = this.docenteService.obtenerTodosLosDocentes();
+    this.alumnos$ = this.alumnoService.obtenerTodosLosAlumnos();
+
+    // Verificar si es edición
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEdit = true;
