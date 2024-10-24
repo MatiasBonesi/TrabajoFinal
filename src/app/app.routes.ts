@@ -9,6 +9,7 @@ import { CursoListComponent } from './components/curso-list/curso-list.component
 import { CursoFormComponent } from './components/curso-form/curso-form.component';
 
 export const routes: Routes = [
+    
     { path: 'temas', component: TemaListComponent },
     { path: 'temas/agregar', component: TemaFormComponent },
     { path: 'temas/editar/:id', component: TemaFormComponent },

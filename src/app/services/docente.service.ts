@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Docente } from '../models/docente.model';
-import { Alumno } from '../models/alumno.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -37,9 +36,5 @@ export class DocenteService {
   eliminarDocente(legajo: number): Observable<Object> {
     return this.http.delete(`${this.apiUrl}/${legajo}`);
   }
-  //El docente a traves de su legajo puede acceder a la lista de alumnos de los cursos vigentes
-  getAlumnosCursoVigente(legajo: number): Observable<Alumno[]> {
-    return this.http.get<Alumno[]>(`${this.apiUrl}/${legajo}/cursos-vigentes/alumnos`);
-  }
-  
+
 }

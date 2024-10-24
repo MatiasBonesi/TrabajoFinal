@@ -1,0 +1,11 @@
+.nav-link {
+    color: #007bff; /* Color del texto */
+    background-color: #f8f9fa; /* Color de fondo por defecto */
+    border: 1px solid transparent; /* Borde transparente para efectos de hover */
+}
+
+.nav-link:hover {
+    color: #fff; /* Color del texto en hover */
+    background-color: #007bff; /* Color de fondo en hover */
+    border-color: #007bff; /* Borde en hover */
+}
