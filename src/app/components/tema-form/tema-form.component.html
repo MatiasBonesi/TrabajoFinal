@@ -1,16 +1,42 @@
 
 <div class="container">
     <h2>{{ isEdit ? 'Editar Tema' : 'Agregar Tema' }}</h2>
-    <form (ngSubmit)="guardarTema()">
+    <form #f="ngForm" (ngSubmit)="f.form.valid && guardarTema()">
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre" [(ngModel)]="tema.nombre" name="nombre" required>
+        <input 
+        type="text" 
+        class="form-control" 
+        id="nombre" 
+        [(ngModel)]="tema.nombre"
+         name="nombre" 
+         required
+         placeholder="Nombre del Tema"
+         minlength="3"
+         maxlength="30"
+         #nombre="ngModel"
+         [ngClass]="{ 'is-invalid': f.submitted && nombre.invalid }"
+         />
+         <!-- Accedemos a los errores usando la referencia #nombre -->
+         <div *ngIf="f.submitted && nombre.errors" class="invalid-feedback">
+          <div *ngIf="nombre.errors['required']">El nombre es obligatorio.</div>
+          <div *ngIf="nombre.errors['minlength']">El nombre debe tener al menos 3 caracteres.</div>
+          <div *ngIf="nombre.errors['maxlength']">El nombre debe tener como máximo 20 caracteres.</div>
+      </div>
       </div>
       <div class="form-group">
         <label for="descripcion">Descripción</label>
-        <textarea class="form-control" id="descripcion" [(ngModel)]="tema.descripcion" name="descripcion" required></textarea>
+        <textarea 
+        class="form-control" 
+        id="descripcion" 
+        [(ngModel)]="tema.descripcion" 
+        name="descripcion" 
+        maxlength="80"
+        required></textarea>
       </div>
       <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Guardar' }}</button>
+      <button (click)="volver()" class="btn btn-secondary" >volver</button>
+      <button type="reset" class="btn btn-danger btn-sm"> Reset </button>
     </form>
   </div>
   

@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Lista de Docentes</h2>
+    <h2 class="text-center">Lista de Docentes</h2>
     
 
     
@@ -18,14 +18,12 @@
           <td>
             <!-- Botones de acción -->
             <button class="btn btn-info btn-sm" (click)="editarDocente(docente.legajo)">Editar</button>
-          </td>
-          <td>
             <button class="btn btn-danger btn-sm" (click)="eliminarDocente(docente.legajo)">Eliminar</button>
           </td>
         </tr>
       </tbody>
-          <!-- Botón para agregar un nuevo Docente -->
-    <button class="btn btn-primary mb-3" (click)="agregarDocente()">Agregar Docente</button>
     </table>
+  <!-- Botón para agregar un nuevo Docente -->
+  <button class="btn btn-primary mb-3" (click)="agregarDocente()">Agregar Docente</button>
   </div>
   

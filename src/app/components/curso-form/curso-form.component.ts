@@ -80,4 +80,7 @@ export class CursoFormComponent implements OnInit {
       });
     }
   }
+  volver():void{
+    this.router.navigate(['/cursos']);
+  }
 }

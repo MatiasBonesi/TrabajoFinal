@@ -1,48 +1,107 @@
 <div class="container">
   <h2>{{ isEdit ? 'Editar Curso' : 'Agregar Curso' }}</h2>
-  <form (ngSubmit)="guardarCurso()">
-
+  <form #f="ngForm" (ngSubmit)="f.form.valid && guardarCurso()">
+    
     <div class="form-group">
       <label for="tema">Tema</label>
-      <!-- Usamos la tubería async para obtener los temas -->
-      <select class="form-control" id="tema" [(ngModel)]="curso.tema" name="tema" required>
+      <select 
+        class="form-control" 
+        id="tema" 
+        [(ngModel)]="curso.tema" 
+        name="tema" 
+        required
+        [ngClass]="{'is-invalid': (f.submitted || f.controls['tema']?.touched) && !f.controls['tema']?.valid}">
         <option *ngFor="let tema of temas$ | async" [ngValue]="tema">{{ tema.nombre }}</option>
       </select>
+      <div *ngIf="(f.submitted || f.controls['tema']?.touched) && !f.controls['tema']?.valid" class="invalid-feedback">
+        Selecciona un tema.
+      </div>
     </div>
 
     <div class="form-group">
       <label for="fechaInicio">Fecha de Inicio</label>
-      <input class="form-control" id="fechaInicio" [(ngModel)]="curso.fechaInicio" name="fechaInicio" type="date" required>
+      <input 
+        class="form-control" 
+        id="fechaInicio" 
+        [(ngModel)]="curso.fechaInicio" 
+        name="fechaInicio" 
+        type="date" 
+        required
+        [ngClass]="{'is-invalid': (f.submitted || f.controls['fechaInicio']?.touched) && !f.controls['fechaInicio']?.valid}">
+      <div *ngIf="(f.submitted || f.controls['fechaInicio']?.touched) && !f.controls['fechaInicio']?.valid" class="invalid-feedback">
+        Ingresa una fecha de inicio.
+      </div>
     </div>
 
     <div class="form-group">
       <label for="fechaFin">Fecha de Finalización</label>
-      <input class="form-control" id="fechaFin" [(ngModel)]="curso.fechaFin" name="fechaFin" type="date" required>
+      <input 
+        class="form-control" 
+        id="fechaFin" 
+        [(ngModel)]="curso.fechaFin" 
+        name="fechaFin" 
+        type="date" 
+        required
+        [ngClass]="{'is-invalid': (f.submitted || f.controls['fechaFin']?.touched) && !f.controls['fechaFin']?.valid}">
+      <div *ngIf="(f.submitted || f.controls['fechaFin']?.touched) && !f.controls['fechaFin']?.valid" class="invalid-feedback">
+        Ingresa una fecha de finalización.
+      </div>
     </div>
 
     <div class="form-group">
       <label for="docente">Docente</label>
-      <!-- Usamos la tubería async para obtener los docentes -->
-      <select class="form-control" id="docente" [(ngModel)]="curso.docente_legajo" name="docente" required>
+      <select 
+        class="form-control" 
+        id="docente" 
+        [(ngModel)]="curso.docente_legajo" 
+        name="docente" 
+        required
+        [ngClass]="{'is-invalid': (f.submitted || f.controls['docente']?.touched) && !f.controls['docente']?.valid}">
         <option *ngFor="let docente of docentes$ | async" [ngValue]="docente">{{ docente.nombre }}</option>
       </select>
+      <div *ngIf="(f.submitted || f.controls['docente']?.touched) && !f.controls['docente']?.valid" class="invalid-feedback">
+        Selecciona un docente.
+      </div>
     </div>
 
     <div class="form-group">
       <label for="precio">Precio</label>
-      <input class="form-control" id="precio" [(ngModel)]="curso.precio" name="precio" type="number" required>
+      <input 
+        class="form-control" 
+        id="precio" 
+        [(ngModel)]="curso.precio" 
+        name="precio" 
+        type="number" 
+        required
+        min="0"
+        [ngClass]="{'is-invalid': (f.submitted || f.controls['precio']?.touched) && !f.controls['precio']?.valid}">
+      <div *ngIf="(f.submitted || f.controls['precio']?.touched) && !f.controls['precio']?.valid" class="invalid-feedback">
+        Ingresa un precio válido.
+      </div>
     </div>
 
     <div class="form-group">
       <label for="alumnos">Alumnos</label>
-      <!-- Usamos la tubería async para obtener los alumnos y permitimos seleccionar múltiples -->
-      <select class="form-control" id="alumnos" [(ngModel)]="curso.alumnos" name="alumnos" multiple required>
+      <select 
+        class="form-control" 
+        id="alumnos" 
+        [(ngModel)]="curso.alumnos" 
+        name="alumnos" 
+        multiple 
+        required
+        [ngClass]="{'is-invalid': (f.submitted || f.controls['alumnos']?.touched) && !f.controls['alumnos']?.valid}">
         <option *ngFor="let alumno of alumnos$ | async" [ngValue]="alumno">{{ alumno.nombre }}</option>
       </select>
+      <div *ngIf="(f.submitted || f.controls['alumnos']?.touched) && !f.controls['alumnos']?.valid" class="invalid-feedback">
+        Selecciona al menos un alumno.
+      </div>
     </div>
     
-
-    <button type="submit" class="btn btn-primary">{{ isEdit ? 'Actualizar' : 'Guardar' }}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+      {{ isEdit ? 'Actualizar' : 'Guardar' }}
+    </button>
+    <button (click)="volver()" class="btn btn-secondary" >volver</button>
+    <button type="reset" class="btn btn-danger btn-sm"> Reset </button>
   </form>
 </div>
 

@@ -3,12 +3,13 @@ import { Tema } from '../../models/tema.model';
 import { TemaService } from '../../services/tema.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-tema-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule,TemaFormComponent],
   templateUrl: './tema-form.component.html',
   styleUrl: './tema-form.component.css'
 })
@@ -42,5 +43,8 @@ export class TemaFormComponent implements OnInit{
         this.router.navigate(['/temas']);
       });
     }
+  }
+  volver():void{
+    this.router.navigate(['/temas']);
   }
 }

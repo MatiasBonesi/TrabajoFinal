@@ -43,4 +43,7 @@ export class DocenteFormComponent {
       });
     }
   }
+  volver():void{
+    this.router.navigate(['/docentes']);
+  }
 }

@@ -1,10 +1,35 @@
-<h2>{{ alumno.id ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
-<form (ngSubmit)="guardarAlumno()">
-  <label for="nombre">Nombre:</label>
-  <input id="nombre" [(ngModel)]="alumno.nombre" name="nombre" type="text" required />
+<h2 class="text-center">{{ alumno.id ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
 
-  <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-  <input id="fechaNacimiento" [(ngModel)]="alumno.fechaNacimiento" name="fechaNacimiento" type="date" required />
-
-  <button type="submit">{{ alumno.id ? 'Actualizar' : 'Agregar' }}</button>
+<form class="form-group" #f="ngForm" (ngSubmit)="f.form.valid && guardarAlumno()">
+  <label for="nombre">Nombre</label>
+  <input 
+    id="nombre" 
+    [(ngModel)]="alumno.nombre" 
+    name="nombre" 
+    type="text"
+    class="form-control" 
+    placeholder="Nombre y Apellido"
+    minlength="3"
+    maxlength="30"
+    #nombre="ngModel"
+    pattern="^[a-zA-Z\s]+$"
+  required />
+  <div *ngIf="f.submitted && nombre.errors" class="invalid-feedback">
+    <div *ngIf="nombre.errors['required']">El nombre es obligatorio.</div>
+    <div *ngIf="nombre.errors['minlength']">El nombre debe tener al menos 3 caracteres.</div>
+    <div *ngIf="nombre.errors['maxlength']">El nombre debe tener como máximo 30 caracteres.</div>
+    <div *ngIf="nombre.errors['pattern']">No se pueden ingresar numeros o simbolos</div>
+  </div>
+  <label for="fechaNacimiento">Fecha de Nacimiento</label>
+  <input 
+  id="fechaNacimiento" 
+  class="form-control" 
+  [(ngModel)]="alumno.fechaNacimiento" 
+  name="fechaNacimiento" 
+  type="date" 
+  required
+   />
+  <button  class="btn btn-primary" type="submit">{{ alumno.id ? 'Actualizar' : 'Agregar' }}</button>
+  <button (click)="volver()" class="btn btn-secondary" >volver</button>
+  <button type="reset" class="btn btn-danger btn-sm"> Reset </button>
 </form>

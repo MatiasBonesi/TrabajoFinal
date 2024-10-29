@@ -22,5 +22,4 @@ export const routes: Routes = [
     { path: 'cursos', component: CursoListComponent },
     { path: 'cursos/agregar', component: CursoFormComponent },
     { path: 'cursos/editar/:id', component: CursoFormComponent }
-
 ];
