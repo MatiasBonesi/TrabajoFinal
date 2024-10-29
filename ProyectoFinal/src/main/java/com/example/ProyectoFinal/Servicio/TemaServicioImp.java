@@ -33,8 +33,8 @@ public class TemaServicioImp implements TemaServicio {
 	@Override
 	public Tema modificarTema(Long id, Tema temaModificado) {
 		Tema temaExistente = temaRepositorio.findById(id)
-				.orElseThrow(()->new EntityNotFoundException("Tema no Encontrado id:"+id));
-		temaExistente.setNombre(temaModificado.getNombre());
+				.orElseThrow(()->new EntityNotFoundException("Tema no Encontrado id:"+id));//Busco al tema por id y en caso de no encontrarlo tira el error de excepcion
+		temaExistente.setNombre(temaModificado.getNombre()); //Modifico los campos del tema
 		temaExistente.setDescripcion(temaModificado.getDescripcion());
 		return temaRepositorio.save(temaExistente);
 	}

@@ -33,8 +33,8 @@ public class AlumnoServicioImp implements AlumnoServicio {
 	@Override
 	public Alumno actualizarAlumno(Long id,Alumno alumnoModificado) {
 		Alumno alumnoExistente = alumnoRepositorio.findById(id) 
-				.orElseThrow(()-> new EntityNotFoundException("Alumno no encontrado con id:"+id));
-		alumnoExistente.setNombre(alumnoModificado.getNombre());
+				.orElseThrow(()-> new EntityNotFoundException("Alumno no encontrado con id:"+id));// Busco al alumno por id y en caso de no encontrarlo tira el error de excepcion
+		alumnoExistente.setNombre(alumnoModificado.getNombre());//Modifico los campos del alumno
 		alumnoExistente.setFechaNacimiento(alumnoModificado.getFechaNacimiento());
 		return alumnoRepositorio.save(alumnoExistente);
 	}

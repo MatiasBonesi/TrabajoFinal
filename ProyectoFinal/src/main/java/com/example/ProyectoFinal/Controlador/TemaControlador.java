@@ -30,25 +30,25 @@ public class TemaControlador {
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping("/temas/{id}")
 	public Optional<Tema> obtenerUnTema(@PathVariable Long id){
-		return temaServicio.obtenerUnTema(id);
+		return temaServicio.obtenerUnTema(id);//Nos puede retornar un tema o el valor null, esto es lo que hace Optional
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping("/temas")
 	public ResponseEntity<Tema> agregarTema(@RequestBody Tema temaNuevo){
 		Tema nuevoTema = temaServicio.guardarTema(temaNuevo);
-		return new ResponseEntity<>(nuevoTema,HttpStatus.CREATED);
+		return new ResponseEntity<>(nuevoTema,HttpStatus.CREATED); //Indica que el tema se creó de forma correcta.
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@PutMapping("/temas/{id}")
 	public ResponseEntity<Tema> modificarTema(@PathVariable Long id,@RequestBody Tema temaModificado){
 		Tema temaActualizado = temaServicio.modificarTema(id, temaModificado);
-		return new ResponseEntity<>(temaActualizado,HttpStatus.OK);
+		return new ResponseEntity<>(temaActualizado,HttpStatus.OK); //Indica que la solicitud se procesó correctamente
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@DeleteMapping("/temas/{id}")
 	public ResponseEntity<Void> eliminarTema(@PathVariable Long id){
 		temaServicio.eliminarTema(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT); //Indica que la solicitud fue exitosa, pero que no hay contenido para devolver en el cuerpo de la respuesta
 	}
 	
 }

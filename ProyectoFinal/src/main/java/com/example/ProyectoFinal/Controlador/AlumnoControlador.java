@@ -30,24 +30,24 @@ public class AlumnoControlador {
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping("/alumnos/{id}")
 	public Optional<Alumno> obtenerAlumnoPorId(@PathVariable Long id){
-		return alumnoServicio.obtenerAlumnoPorId(id);
+		return alumnoServicio.obtenerAlumnoPorId(id);//Nos puede retornar un alumno o el valor null, esto es lo que hace Optional
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping("/alumnos")
 	public ResponseEntity<Alumno> guardarAlumno(@RequestBody Alumno alumno){
 		Alumno alumnoNuevo = alumnoServicio.guardarAlumno(alumno);
-		return new ResponseEntity<>(alumnoNuevo,HttpStatus.CREATED);
+		return new ResponseEntity<>(alumnoNuevo,HttpStatus.CREATED);//Indica que el alumno se creó de forma correcta.
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@PutMapping("/alumnos/{id}")
 	public ResponseEntity<Alumno> actualizarAlumno(@PathVariable Long id, @RequestBody Alumno alumno){
 		Alumno alumnoActualizado = alumnoServicio.actualizarAlumno(id, alumno);
-		return new ResponseEntity<>(alumnoActualizado,HttpStatus.OK);
+		return new ResponseEntity<>(alumnoActualizado,HttpStatus.OK); //Indica que la solicitud se procesó correctamente
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@DeleteMapping("/alumnos/{id}")
 	public ResponseEntity<Alumno> eliminarAlumno(@PathVariable Long id){
 		alumnoServicio.eliminarAlumno(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT); //Indica que la solicitud fue exitosa, pero que no hay contenido para devolver en el cuerpo de la respuesta
 	}
 }

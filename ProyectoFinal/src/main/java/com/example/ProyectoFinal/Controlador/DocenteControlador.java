@@ -36,19 +36,19 @@ public class DocenteControlador {
 	@PostMapping("/docentes")
 	public ResponseEntity<Docente> guardarDocente(@RequestBody Docente docente){
 		Docente docenteNuevo = docenteServicio.guardarDocente(docente);
-		return new ResponseEntity<>(docenteNuevo,HttpStatus.CREATED);
+		return new ResponseEntity<>(docenteNuevo,HttpStatus.CREATED); //Indica que el docente se creó de forma correcta.
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@PutMapping("/docentes/{legajo}")
 	public ResponseEntity<Docente> actualizarDocente(@PathVariable Long legajo,@RequestBody Docente docente){
 		Docente docenteActualizado = docenteServicio.modificarDocente(legajo,docente);
-		return new ResponseEntity<>(docenteActualizado,HttpStatus.OK);
+		return new ResponseEntity<>(docenteActualizado,HttpStatus.OK); //Indica que la solicitud se procesó correctamente
 	}
 	@CrossOrigin(origins="http://localhost:4200")
 	@DeleteMapping("/docentes/{legajo}")
 	public ResponseEntity<Docente> eliminarDocente(@PathVariable Long legajo){
 		docenteServicio.eliminarDocente(legajo);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT); //Indica que la solicitud fue exitosa, pero que no hay contenido para devolver en el cuerpo de la respuesta
 	}
 	
 }

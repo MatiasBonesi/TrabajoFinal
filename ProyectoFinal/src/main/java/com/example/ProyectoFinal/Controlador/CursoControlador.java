@@ -4,6 +4,7 @@ package com.example.ProyectoFinal.Controlador;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,39 +40,40 @@ public class CursoControlador {
 	@CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/cursos/{id}")
     public Optional<Curso> obtenerUnCurso(@PathVariable Long id){
-    	return cursoServicio.obtenerUnCurso(id);
+    	return cursoServicio.obtenerUnCurso(id); //Nos puede retornar un curso o el valor null, esto es lo que hace Optional
     }
 	@CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/cursos/fecha-fin")
-    public List<Curso> obtenerCursosPorFechaFin(@RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
-        return cursoServicio.obtenerCursoporFechaFin(java.sql.Date.valueOf(fechaFin));
+    public List<Curso> obtenerCursosPorFechaFin(@RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {//DateTimeFormat.ISO.DATE, lo que significa que la fecha debe estar en el formato ISO-8601 (yyyy-MM-dd)
+		//Se debe proporcionar un parametro en la URL /cursos/fecha-fin?fecha=2024-12-31
+		return cursoServicio.obtenerCursoporFechaFin(java.sql.Date.valueOf(fechaFin));//Convierte a fechaFin en un dato de sql
     }
 	@CrossOrigin(origins="http://localhost:4200")
-    @GetMapping("/docente/{docente_legajo}/alumnos")
-    public ResponseEntity<List<String>> obtenerAlumnosPorDocente(@PathVariable("docente_legajo") Long docente_legajo) {
-        List<String> alumnos = cursoServicio.obtenerAlumnosPorDocente(docente_legajo);
+    @GetMapping("/cursos/docente/{docente_legajo}/alumnos")
+    public ResponseEntity<Set<String>> obtenerAlumnosPorDocente(@PathVariable("docente_legajo") Long docente_legajo) {
+        Set<String> alumnos = cursoServicio.obtenerAlumnosPorDocente(docente_legajo);
         if (alumnos.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build();//Si el conjunto alumnos está vacío, devuelve la respuesta http de que no_content.
         }
-        return ResponseEntity.ok(alumnos);
+        return ResponseEntity.ok(alumnos);//Si el conjunto alumnos no está vacío, devuelve una respuesta http Ok.
     }
 
 	@CrossOrigin(origins="http://localhost:4200")
     @PostMapping("/cursos")
     public ResponseEntity<Curso> guardarCurso(@RequestBody Curso curso){
     	Curso nuevoCurso = cursoServicio.guardarCurso(curso);
-    	return new ResponseEntity<>(nuevoCurso,HttpStatus.CREATED);
+    	return new ResponseEntity<>(nuevoCurso,HttpStatus.CREATED); //Indica que el curso se creó de forma correcta.
     }
 	@CrossOrigin(origins="http://localhost:4200")
     @PutMapping("/cursos/{id}")
     public ResponseEntity<Curso> modificarCurso(@PathVariable Long id, @RequestBody Curso curso){
     	Curso cursoActualizado= cursoServicio.actualizarCurso(id, curso);
-    	return new ResponseEntity<>(cursoActualizado,HttpStatus.OK);
+    	return new ResponseEntity<>(cursoActualizado,HttpStatus.OK); //Indica que la solicitud se procesó correctamente.
     }
 	@CrossOrigin(origins="http://localhost:4200")
     @DeleteMapping("/cursos/{id}")
     public ResponseEntity<Void> eliminarCurso(@PathVariable Long id){
     	cursoServicio.eliminarCurso(id);
-    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    	return new ResponseEntity<>(HttpStatus.NO_CONTENT); //Indica que la solicitud fue exitosa, pero que no hay contenido para devolver en el cuerpo de la respuesta
     } 
 }

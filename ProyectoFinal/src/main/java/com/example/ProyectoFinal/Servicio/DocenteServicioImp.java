@@ -33,8 +33,8 @@ public class DocenteServicioImp implements DocenteServicio {
 	@Override
 	public Docente modificarDocente(Long legajo, Docente docenteModificado) {
 		Docente docenteExistente = docenteRepositorio.findById(legajo)
-				.orElseThrow(()->new EntityNotFoundException("docente no encontrado legajo:"+ legajo));
-		docenteExistente.setNombre(docenteModificado.getNombre());
+				.orElseThrow(()->new EntityNotFoundException("docente no encontrado legajo:"+ legajo));// Busco al docente por legajo y en caso de no encontrarlo tira el error de excepcion
+		docenteExistente.setNombre(docenteModificado.getNombre());// Se modifica el nombre del Docente
 		return docenteRepositorio.save(docenteExistente);
 	}
 	@Override

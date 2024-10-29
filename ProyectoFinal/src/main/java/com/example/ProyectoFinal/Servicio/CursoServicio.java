@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.example.ProyectoFinal.Entidad.Curso;
 
@@ -15,5 +16,5 @@ public interface CursoServicio {
 	public Curso actualizarCurso(Long id,Curso cursomodificado );
 	public void eliminarCurso(Long id);
 	public List<Curso> obtenerCursoporFechaFin(Date fechaFin);
-	public List<String> obtenerAlumnosPorDocente(Long docente_legajo);
+	public Set<String> obtenerAlumnosPorDocente(Long docente_legajo);
 }

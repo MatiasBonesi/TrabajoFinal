@@ -15,29 +15,29 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="cursos")
+@Table(name="cursos")//Pongo el nombre de la tabla de la base de datos
 public class Curso {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Esto es para que vaya autoincrementando el id cada vez que se crea un nuevo curso
 	private Long id;
-	@ManyToOne
+	@ManyToOne//Especifica la relacion con la tabla temas
 	@JoinColumn(name="tema_id")
 	private Tema tema;
 	@Column(name="fechaInicio")
 	private Date fechaInicio;
 	@Column(name="fechaFin")
 	private Date fechaFin;
-	@ManyToOne
+	@ManyToOne//Especifica la relacion con la tabla docentes
 	@JoinColumn(name="docente_legajo")
 	private Docente docente_legajo;
 	@Column(name="precio")
 	private Double precio;
 	
-		@ManyToMany
+		@ManyToMany //Especifica la relacion muchos a muchos con la tabla alumnos
     @JoinTable(
         name = "curso_alumno",
-        joinColumns = @JoinColumn(name = "curso_id"),
-        inverseJoinColumns = @JoinColumn(name = "alumno_id")
+        joinColumns = @JoinColumn(name = "curso_id"),//Especifica la columna que hace referencia a Curso
+        inverseJoinColumns = @JoinColumn(name = "alumno_id")//Especifica la columna que hace referencia a Alumno
     )
     private List<Alumno> alumnos;
 	
