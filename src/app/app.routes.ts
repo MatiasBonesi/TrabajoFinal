@@ -21,5 +21,6 @@ export const routes: Routes = [
     { path: 'docentes/editar/:legajo', component: DocenteFormComponent },
     { path: 'cursos', component: CursoListComponent },
     { path: 'cursos/agregar', component: CursoFormComponent },
-    { path: 'cursos/editar/:id', component: CursoFormComponent }
+    { path: 'cursos/editar/:id', component: CursoFormComponent },
+    {path:'',redirectTo:'/cursos',pathMatch:'full'}
 ];

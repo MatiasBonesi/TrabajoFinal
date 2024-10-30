@@ -15,11 +15,12 @@ import { CommonModule } from '@angular/common';
 export class AlumnoFormComponent implements OnInit {
   alumno: Alumno = { id: 0, nombre: '', fechaNacimiento: new Date() };
   isEdit:boolean = false;
-  fechaMaxima18: string='';
+  fechaMaxima: string='';
 
 
   constructor(private alumnoService: AlumnoService,private route: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
+    this.setFechaMaxima();
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEdit = true;
@@ -28,7 +29,10 @@ export class AlumnoFormComponent implements OnInit {
       });
     }
   }
-
+  setFechaMaxima(): void {
+    const hoy = new Date();
+    this.fechaMaxima = hoy.toISOString().split('T')[0]; // formato 'yyyy-MM-dd'
+  }
   guardarAlumno():void {
     if (this.isEdit) {
       this.alumnoService.actualizarAlumno(this.alumno.id, this.alumno).subscribe(() => {

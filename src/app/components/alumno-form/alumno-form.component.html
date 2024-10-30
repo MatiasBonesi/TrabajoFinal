@@ -27,6 +27,7 @@
   [(ngModel)]="alumno.fechaNacimiento" 
   name="fechaNacimiento" 
   type="date" 
+  [max]="fechaMaxima"
   required
    />
   <button  class="btn btn-primary" type="submit">{{ alumno.id ? 'Actualizar' : 'Agregar' }}</button>

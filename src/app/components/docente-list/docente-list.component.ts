@@ -44,7 +44,12 @@ eliminarDocente(legajo: number): void {
       this.docentes = this.docentes.filter(docente => docente.legajo !== legajo);
     },
     error => {
-      console.error('Error al eliminar el docente:', error);
+      if (error.status === 500) {
+        alert("No puede eliminar este docente porque se encuentra en un curso.");
+      } else {
+        console.error("Error al eliminar el alumno:", error);
+        alert("Ocurrió un error inesperado al intentar eliminar el docente.");
+      }
     }
   );
 }

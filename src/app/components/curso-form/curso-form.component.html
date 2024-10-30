@@ -9,8 +9,7 @@
         id="tema" 
         [(ngModel)]="curso.tema" 
         name="tema" 
-        required
-        [ngClass]="{'is-invalid': (f.submitted || f.controls['tema']?.touched) && !f.controls['tema']?.valid}">
+        required>
         <option *ngFor="let tema of temas$ | async" [ngValue]="tema">{{ tema.nombre }}</option>
       </select>
       <div *ngIf="(f.submitted || f.controls['tema']?.touched) && !f.controls['tema']?.valid" class="invalid-feedback">
@@ -26,8 +25,7 @@
         [(ngModel)]="curso.fechaInicio" 
         name="fechaInicio" 
         type="date" 
-        required
-        [ngClass]="{'is-invalid': (f.submitted || f.controls['fechaInicio']?.touched) && !f.controls['fechaInicio']?.valid}">
+        required>
       <div *ngIf="(f.submitted || f.controls['fechaInicio']?.touched) && !f.controls['fechaInicio']?.valid" class="invalid-feedback">
         Ingresa una fecha de inicio.
       </div>
@@ -41,8 +39,7 @@
         [(ngModel)]="curso.fechaFin" 
         name="fechaFin" 
         type="date" 
-        required
-        [ngClass]="{'is-invalid': (f.submitted || f.controls['fechaFin']?.touched) && !f.controls['fechaFin']?.valid}">
+        required>
       <div *ngIf="(f.submitted || f.controls['fechaFin']?.touched) && !f.controls['fechaFin']?.valid" class="invalid-feedback">
         Ingresa una fecha de finalización.
       </div>
@@ -55,8 +52,7 @@
         id="docente" 
         [(ngModel)]="curso.docente_legajo" 
         name="docente" 
-        required
-        [ngClass]="{'is-invalid': (f.submitted || f.controls['docente']?.touched) && !f.controls['docente']?.valid}">
+        required>
         <option *ngFor="let docente of docentes$ | async" [ngValue]="docente">{{ docente.nombre }}</option>
       </select>
       <div *ngIf="(f.submitted || f.controls['docente']?.touched) && !f.controls['docente']?.valid" class="invalid-feedback">
@@ -73,8 +69,7 @@
         name="precio" 
         type="number" 
         required
-        min="0"
-        [ngClass]="{'is-invalid': (f.submitted || f.controls['precio']?.touched) && !f.controls['precio']?.valid}">
+        min="0">
       <div *ngIf="(f.submitted || f.controls['precio']?.touched) && !f.controls['precio']?.valid" class="invalid-feedback">
         Ingresa un precio válido.
       </div>
@@ -89,7 +84,7 @@
         name="alumnos" 
         multiple 
         required
-        [ngClass]="{'is-invalid': (f.submitted || f.controls['alumnos']?.touched) && !f.controls['alumnos']?.valid}">
+        >
         <option *ngFor="let alumno of alumnos$ | async" [ngValue]="alumno">{{ alumno.nombre }}</option>
       </select>
       <div *ngIf="(f.submitted || f.controls['alumnos']?.touched) && !f.controls['alumnos']?.valid" class="invalid-feedback">

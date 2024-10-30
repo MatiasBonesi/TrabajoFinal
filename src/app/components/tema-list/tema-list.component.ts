@@ -49,7 +49,12 @@ export class TemaListComponent implements OnInit{
         this.temas = this.temas.filter(tema => tema.id !== id);
       },
       error => {
-        console.error('Error al eliminar el tema:', error);
+        if (error.status === 500) {
+          alert("No puede eliminar este tema porque se encuentra en un curso.");
+        } else {
+          console.error("Error al eliminar el alumno:", error);
+          alert("Ocurrió un error inesperado al intentar eliminar el tema.");
+        }
       }
     );
   }

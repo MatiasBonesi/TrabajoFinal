@@ -2,7 +2,7 @@
   
   
   <div class="form-group">
-    <label for="buscarFechaFin">Buscar cursos por Fecha de Finalización:</label>
+    <h2 for="buscarFechaFin">Buscar cursos por Fecha de Finalización:</h2>
     <input class="form-control" id="buscarFechaFin" [(ngModel)]="filtroFechaFin" name="buscarFechaFin" type="date">
     <button class="btn btn-primary mt-2" (click)="buscarCursosPorFecha()">Buscar</button>
   </div>
@@ -18,6 +18,7 @@
     </div>
   
     <button class="btn btn-primary mt-3" (click)="buscarAlumnos()">Buscar Alumnos</button>
+    
   
     <!-- Mostrar la lista de alumnos si los hay -->
     <div *ngIf="alumnos.length > 0">
@@ -25,11 +26,6 @@
       <ul>
         <li *ngFor="let alumno of alumnos">{{ alumno || 'Sin alumno asignado' }}</li>
       </ul>
-    </div>
-  
-    <!-- Mostrar mensaje si no hay alumnos -->
-    <div *ngIf="alumnos.length === 0 && selectedLegajo">
-      <p>No se encontraron alumnos para el docente seleccionado.</p>
     </div>
   </div>
   

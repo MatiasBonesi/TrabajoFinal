@@ -93,15 +93,22 @@ export class CursoListComponent implements OnInit {
     buscarAlumnos(): void {
       if (this.selectedLegajo) {
         this.cursoService.getAlumnosCursoVigente(this.selectedLegajo).subscribe(
-          (data: String[]) => {
-            this.alumnos = data;
+          (data: String[] | null) => {
+            if (data && data.length > 0) {
+              this.alumnos = data;
+            } else {
+              this.alumnos = []; // Limpiamos la lista si no se encontraron alumnos
+              console.log("No se encontraron alumnos para el docente seleccionado.");
+            }
           },
           error => {
             console.error('Error al buscar los alumnos:', error);
-            this.alumnos = [];  // En caso de error, limpia la lista de alumnos
+            this.alumnos = [];  // Limpia la lista en caso de error
           }
         );
       }
     }
+    
+    
   
 }

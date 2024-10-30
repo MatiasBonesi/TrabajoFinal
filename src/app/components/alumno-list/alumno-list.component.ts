@@ -33,8 +33,19 @@ export class AlumnoListComponent implements OnInit {
   }
 
   eliminarAlumno(id: number) {
-    this.alumnoService.eliminarAlumno(id).subscribe(() => {
-      this.cargarAlumnos(); // Refresca la lista después de eliminar
-    });
+    this.alumnoService.eliminarAlumno(id).subscribe(
+      () => {
+        this.cargarAlumnos(); // Refresca la lista después de eliminar
+      },
+      error => {
+        if (error.status === 500) {
+          alert("No puede eliminar este alumno porque se encuentra en un curso.");
+        } else {
+          console.error("Error al eliminar el alumno:", error);
+          alert("Ocurrió un error inesperado al intentar eliminar el alumno.");
+        }
+      }
+    );
   }
+  
 }
