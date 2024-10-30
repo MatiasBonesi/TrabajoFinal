@@ -1,8 +1,8 @@
 package com.example.ProyectoFinal.Servicio;
 
 
-import java.sql.Date;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -15,6 +15,6 @@ public interface CursoServicio {
 	public Curso guardarCurso(Curso curso);
 	public Curso actualizarCurso(Long id,Curso cursomodificado );
 	public void eliminarCurso(Long id);
-	public List<Curso> obtenerCursoporFechaFin(Date fechaFin);
+	public List<Curso> obtenerCursoporFechaFin(LocalDate fechaFin);
 	public Set<String> obtenerAlumnosPorDocente(Long docente_legajo);
 }

@@ -46,7 +46,7 @@ public class CursoControlador {
     @GetMapping("/cursos/fecha-fin")
     public List<Curso> obtenerCursosPorFechaFin(@RequestParam("fecha") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {//DateTimeFormat.ISO.DATE, lo que significa que la fecha debe estar en el formato ISO-8601 (yyyy-MM-dd)
 		//Se debe proporcionar un parametro en la URL /cursos/fecha-fin?fecha=2024-12-31
-		return cursoServicio.obtenerCursoporFechaFin(java.sql.Date.valueOf(fechaFin));//Convierte a fechaFin en un dato de sql
+		return cursoServicio.obtenerCursoporFechaFin(fechaFin);//Convierte a fechaFin en un dato de sql
     }
 	@CrossOrigin(origins="http://localhost:4200")
     @GetMapping("/cursos/docente/{docente_legajo}/alumnos")

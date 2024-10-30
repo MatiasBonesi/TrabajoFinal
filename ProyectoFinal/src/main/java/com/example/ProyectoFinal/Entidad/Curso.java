@@ -1,6 +1,7 @@
 package com.example.ProyectoFinal.Entidad;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -24,9 +25,9 @@ public class Curso {
 	@JoinColumn(name="tema_id")
 	private Tema tema;
 	@Column(name="fechaInicio")
-	private Date fechaInicio;
+	private LocalDate fechaInicio;
 	@Column(name="fechaFin")
-	private Date fechaFin;
+	private LocalDate fechaFin;
 	@ManyToOne//Especifica la relacion con la tabla docentes
 	@JoinColumn(name="docente_legajo")
 	private Docente docente_legajo;
@@ -42,7 +43,7 @@ public class Curso {
     private List<Alumno> alumnos;
 	
 		
-	public Curso(Long id, Tema tema, Date fechaInicio, Date fechaFin, Docente docente_legajo, Double precio,
+	public Curso(Long id, Tema tema, LocalDate fechaInicio, LocalDate fechaFin, Docente docente_legajo, Double precio,
 				List<Alumno> alumnos) {
 			super();
 			this.id = id;
@@ -72,19 +73,19 @@ public class Curso {
 		this.tema = tema;
 	}
 
-	public Date getFechaInicio() {
+	public LocalDate getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(LocalDate fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public Date getFechaFin() {
+	public LocalDate getFechaFin() {
 		return fechaFin;
 	}
 
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(LocalDate fechaFin) {
 		this.fechaFin = fechaFin;
 	}
 

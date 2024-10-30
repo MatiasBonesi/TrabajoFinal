@@ -1,6 +1,7 @@
 package com.example.ProyectoFinal.Entidad;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,11 +16,11 @@ public class Alumno {
 	@Column(name="nombre")
 	private String nombre;
 	@Column(name="fechaNacimiento")
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	public Alumno() {}
 	
 	
-	public Alumno(Long id, String nombre, Date fechaNacimiento) {
+	public Alumno(Long id, String nombre, LocalDate fechaNacimiento) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -39,10 +40,10 @@ public class Alumno {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	

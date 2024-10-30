@@ -1,7 +1,6 @@
 package com.example.ProyectoFinal.Servicio;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +56,7 @@ public class CursoServicioImp implements CursoServicio {
 		
 	}
 	@Override
-	public List<Curso> obtenerCursoporFechaFin(Date fechaFin){
+	public List<Curso> obtenerCursoporFechaFin(LocalDate fechaFin){
 		  return cursoRepositorio.findAll().stream()//Convierte la lista de cursos obtenida en un flujo de datos, para luego poder hacer un filtrado
 		            .filter(curso -> curso.getFechaFin().equals(fechaFin))//filtro usando la funcion anonima indicando si es igual a la fechaFin
 		            .collect(Collectors.toList()); //El flujo filtrado se recolecta en una lista, en este caso lista de Cursos
@@ -65,7 +64,7 @@ public class CursoServicioImp implements CursoServicio {
 
 	@Override
 	public Set<String> obtenerAlumnosPorDocente(Long docente_legajo) {
-	    Date fechaActual = Date.valueOf(LocalDate.now()); //Obtiene la fecha actual y la convierte al tipo Date
+	    LocalDate fechaActual = LocalDate.now(); //Obtiene la fecha actual y la convierte al tipo Date
 	    return cursoRepositorio.findAll().stream() //Convierte la lista de cursos obtenida en un flujo de datos, para luego poder hacer un filtrado
 	            .filter(curso -> curso.getDocente_legajo().getLegajo().equals(docente_legajo) && 
 	                             curso.getFechaFin().compareTo(fechaActual) >= 0)//Hago el filtrado por el legajo de docente y por fechaActual
