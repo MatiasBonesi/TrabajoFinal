@@ -14,25 +14,28 @@ import { CommonModule } from '@angular/common';
 })
 export class AlumnoFormComponent implements OnInit {
   alumno: Alumno = { id: 0, nombre: '', fechaNacimiento: new Date() };
-  isEdit:boolean = false;
+  isEdit:boolean = false; 
   fechaMaxima: string='';
 
 
   constructor(private alumnoService: AlumnoService,private route: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
-    this.setFechaMaxima();
-    const id = this.route.snapshot.paramMap.get('id');
+    this.setFechaMaxima(); // Al iniciar seteo la fecha maxima como el dia de hoy
+    const id = this.route.snapshot.paramMap.get('id'); 
+    //Si obtengo el id a traves de la url es porque esta editando un alumno
     if (id) {
-      this.isEdit = true;
+      this.isEdit = true; //Modifico el isEdit a true
       this.alumnoService.obtenerUnAlumno(Number(id)).subscribe((data: Alumno) => {
-        this.alumno = data;
+        this.alumno = data; //Traigo los datos de ese alumno
       });
     }
   }
+  //Establece la fecha actual
   setFechaMaxima(): void {
     const hoy = new Date();
-    this.fechaMaxima = hoy.toISOString().split('T')[0]; // formato 'yyyy-MM-dd'
+    this.fechaMaxima = hoy.toISOString().split('T')[0]; // Usa el formato 'yyyy-MM-dd'
   }
+  
   guardarAlumno():void {
     if (this.isEdit) {
       this.alumnoService.actualizarAlumno(this.alumno.id, this.alumno).subscribe(() => {

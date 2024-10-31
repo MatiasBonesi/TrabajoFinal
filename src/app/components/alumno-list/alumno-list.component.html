@@ -1,3 +1,4 @@
+<div class="container">
 <h2 class="text-center">Lista de Alumnos</h2>
 <br>
 <table class="table table-striped">
@@ -15,11 +16,14 @@
       <td>{{ alumno.nombre }}</td>
       <td>{{ alumno.fechaNacimiento | date: 'dd/MM/yyyy' }}</td>
       <td>
-        <button class="btn btn-info btn-sm" (click)="editarAlumno(alumno.id)">Editar</button>
-        <button class="btn btn-danger btn-sm" (click)="eliminarAlumno(alumno.id)">Eliminar</button>
+        <button class="btn btn-info btn-sm" (click)="editarAlumno(alumno.id)"> <i class="bi bi-pencil"></i> Editar</button>
+        <button class="btn btn-danger btn-sm" (click)="eliminarAlumno(alumno.id)"><i class="bi bi-trash"></i> Eliminar</button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<button class="btn btn-primary mb-3" (click)="agregarAlumno()">Agregar Alumno</button>
+<button class="btn btn-primary mb-3" (click)="agregarAlumno()">
+  <i class="bi bi-plus-circle"></i>  Agregar Alumno
+</button>
+</div>

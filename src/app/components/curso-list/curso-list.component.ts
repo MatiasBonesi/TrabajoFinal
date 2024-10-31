@@ -5,7 +5,6 @@ import { CursoService } from '../../services/curso.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Docente } from '../../models/docente.model';
-import { Alumno } from '../../models/alumno.model';
 import { DocenteService } from '../../services/docente.service';
 import { Observable } from 'rxjs';
 
@@ -109,6 +108,9 @@ export class CursoListComponent implements OnInit {
       }
     }
     
-    
+    reiniciar():void{
+      this.filtroFechaFin = new Date;
+      this.cargarCursos();
+    }
   
 }

@@ -1,39 +1,34 @@
 <head></head>
 <body>
-<h1>Bienvenido a CursoPedia</h1>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container justify-content-center"> <!-- Centra el contenido -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                  <button class="nav-link" (click)="iraCursos()">
-                      <i class="bi bi-book"></i> Cursos
-                  </button>
-              </li>
-              <li class="nav-item">
-                  <button class="nav-link" (click)="iraDocentes()">
-                      <i class="bi bi-person"></i> Docentes
-                  </button>
-              </li>
-              <li class="nav-item">
-                  <button class="nav-link" (click)="iraAlumnos()">
-                      <i class="bi bi-person-lines-fill"></i> Alumnos
-                  </button>
-              </li>
-              <li class="nav-item">
-                  <button class="nav-link" (click)="iraTemas()">
-                      <i class="bi bi-file-earmark-text"></i> Temas
-                  </button>
-              </li>
-          </ul>
-      </div>
-  </div>
-</nav>
-
-  
-
-  
-<router-outlet></router-outlet>
-
+  <h1 class="text-center">Bienvenido a CursoPedia</h1>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container justify-content-center"> <!-- Barra de navegacion-->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="nav-link btn btn-link" (click)="iraCursos()">
+                        <i class="bi bi-book"></i> Cursos
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link btn btn-link" (click)="iraDocentes()">
+                        <i class="bi bi-person"></i> Docentes
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link btn btn-link" (click)="iraAlumnos()">
+                        <i class="bi bi-person-lines-fill"></i> Alumnos
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link btn btn-link" (click)="iraTemas()">
+                        <i class="bi bi-file-earmark-text"></i> Temas
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
 </body>
+
 <router-outlet />

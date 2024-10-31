@@ -11,19 +11,20 @@ import { Router } from '@angular/router';
   styleUrl: './alumno-list.component.css'
 })
 export class AlumnoListComponent implements OnInit {
-  alumnos: Alumno[] = [];
+  alumnos: Alumno[] = []; //Inicializo una variable de lista de alumnos vacia
 
   constructor(private alumnoService: AlumnoService,private router: Router) {}
   
   ngOnInit(): void {
-    this.cargarAlumnos();
+    this.cargarAlumnos(); // Al iniciar ejecuta la funcion cargaralumnos()
   }
+  //Obtiene todos los alumnos gracias a la funcion del servicio y los asigna a la lista alumnos
   cargarAlumnos() {
     this.alumnoService.obtenerTodosLosAlumnos().subscribe(data => {
       this.alumnos = data;
     });
   }
-
+  // Las funciones de agregar y editar alumnos nos redirigen a su correspondiente endpoint
   agregarAlumno() {
     this.router.navigate(['/alumnos/agregar']);
   }
@@ -31,11 +32,11 @@ export class AlumnoListComponent implements OnInit {
   editarAlumno(id: number) {
     this.router.navigate([`/alumnos/editar/${id}`]);
   }
-
+  //Elimina el alumno
   eliminarAlumno(id: number) {
     this.alumnoService.eliminarAlumno(id).subscribe(
       () => {
-        this.cargarAlumnos(); // Refresca la lista después de eliminar
+        this.cargarAlumnos(); // Recarga la lista después de eliminar
       },
       error => {
         if (error.status === 500) {

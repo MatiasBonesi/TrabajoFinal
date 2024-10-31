@@ -9,7 +9,6 @@ import { CursoListComponent } from './components/curso-list/curso-list.component
 import { CursoFormComponent } from './components/curso-form/curso-form.component';
 
 export const routes: Routes = [
-    
     { path: 'temas', component: TemaListComponent },
     { path: 'temas/agregar', component: TemaFormComponent },
     { path: 'temas/editar/:id', component: TemaFormComponent },
@@ -22,5 +21,5 @@ export const routes: Routes = [
     { path: 'cursos', component: CursoListComponent },
     { path: 'cursos/agregar', component: CursoFormComponent },
     { path: 'cursos/editar/:id', component: CursoFormComponent },
-    {path:'',redirectTo:'/cursos',pathMatch:'full'}
+    {path:'',redirectTo:'/cursos',pathMatch:'full'} // Al inicial la pagina directamente me redirige al endpoint de cursos
 ];

@@ -21,7 +21,7 @@ export class TemaService {
     return this.http.get<Tema>(`${this.apiUrl}/${id}`);
   }
 
-  // Crear un nuevo tema, en el back hay un endpoint POST/temas que recibe un tema en el cuerpo de la solicitud
+  // Crear un nuevo tema
   guardarTema(tema: Tema): Observable<Object> {
     return this.http.post(`${this.apiUrl}`, tema);
   }

@@ -1,4 +1,4 @@
-<h2 class="text-center">{{ alumno.id ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
+<h2 class="text-center">{{ isEdit ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
 
 <form class="form-group" #f="ngForm" (ngSubmit)="f.form.valid && guardarAlumno()">
   <label for="nombre">Nombre</label>
@@ -30,7 +30,7 @@
   [max]="fechaMaxima"
   required
    />
-  <button  class="btn btn-primary" type="submit">{{ alumno.id ? 'Actualizar' : 'Agregar' }}</button>
-  <button (click)="volver()" class="btn btn-secondary" >volver</button>
-  <button type="reset" class="btn btn-danger btn-sm"> Reset </button>
+  <button  class="btn btn-primary" type="submit" [disabled]="f.invalid"><i class="fas fa-check"></i> {{ isEdit? 'Actualizar' : 'Agregar' }}</button>
+  <button (click)="volver()" class="btn btn-secondary" >  <i class="fas fa-arrow-left"></i> volver</button>
+  <button type="reset" class="btn btn-danger btn-sm" id="reseteo"><i class="bi bi-x-circle"></i>  Reset </button>
 </form>

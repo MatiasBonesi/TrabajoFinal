@@ -17,7 +17,7 @@ export class DocenteService {
     return this.http.get<Docente[]>(`${this.apiUrl}`);
   }
 
-  // Obtener un docente por legajo
+  // Obtener un docente por ID
   obtenerDocentePorLegajo(legajo: number): Observable<Docente> {
     return this.http.get<Docente>(`${this.apiUrl}/${legajo}`);
   }

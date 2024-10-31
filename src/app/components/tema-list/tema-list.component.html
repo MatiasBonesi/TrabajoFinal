@@ -18,13 +18,15 @@
           <td>{{ tema.descripcion }}</td>
           <td>
             <!-- Botones de acción -->
-            <button class="btn btn-info btn-sm" (click)="editarTema(tema.id)">Editar</button>
-            <button class="btn btn-danger btn-sm" (click)="eliminarTema(tema.id)">Eliminar</button>
+            <button class="btn btn-info btn-sm" (click)="editarTema(tema.id)"><i class="bi bi-pencil"></i> Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarTema(tema.id)"><i class="bi bi-trash"></i> Eliminar</button>
           </td>
         </tr>
       </tbody>
     </table>
   <!-- Botón para agregar un nuevo tema -->
- <button class="btn btn-primary mb-3" (click)="agregarTema()">Agregar Tema</button>
+ <button class="btn btn-primary mb-3" (click)="agregarTema()">
+  <i class="bi bi-plus-circle"></i> Agregar Tema
+</button>
   </div>
   

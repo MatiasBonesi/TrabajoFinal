@@ -1,11 +1,42 @@
+/* Estilos para la barra de navegación */
+.navbar {
+    background: linear-gradient(90deg, #007bff, #0056b3); /* Degradado de azul */
+    padding: 10px 0;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+/* Estilos para los enlaces de la barra de navegación */
 .nav-link {
-    color: #007bff; /* Color del texto */
-    background-color: #f8f9fa; /* Color de fondo por defecto */
-    border: 1px solid transparent; /* Borde transparente para efectos de hover */
+    color: #f8f9fa; /* Color claro para el texto */
+    padding: 10px 15px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s; /* Transición para el efecto de hover */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
 .nav-link:hover {
-    color: #fff; /* Color del texto en hover */
-    background-color: #007bff; /* Color de fondo en hover */
-    border-color: #007bff; /* Borde en hover */
+    color: #007bff; /* Color azul en hover */
+    background-color: #ffffff; /* Fondo claro en hover */
+    border-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra en hover para resaltar */
 }
+
+/* Fondo general de la página */
+body {
+    background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Degradado suave */
+    color: #333; /* Color de texto principal */
+    font-family: Arial, sans-serif;
+  }
+/* Estilos para el título */
+.titulo {
+  font-family: 'Poppins', sans-serif; /* Fuente personalizada */
+  font-size: 2.5em; /* Tamaño del título */
+  color: #ffffff;
+  background-color: #007bff; /* Fondo azul Bootstrap */
+  padding: 20px;
+  margin: 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+  border-radius: 8px; /* Bordes redondeados */
+}
+  

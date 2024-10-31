@@ -2,9 +2,12 @@
   
   
   <div class="form-group">
-    <h2 for="buscarFechaFin">Buscar cursos por Fecha de Finalización:</h2>
+    <h2 for="buscarFechaFin">Buscar cursos por Fecha de Finalización</h2>
     <input class="form-control" id="buscarFechaFin" [(ngModel)]="filtroFechaFin" name="buscarFechaFin" type="date">
-    <button class="btn btn-primary mt-2" (click)="buscarCursosPorFecha()">Buscar</button>
+    <button class="btn btn-primary mt-2" (click)="buscarCursosPorFecha()">
+      <i class="bi bi-search"></i> Buscar
+    </button>
+    <button class="btn btn-warning mt-2" id="limpieza" (click)="reiniciar()"> <i class="bi bi-x-circle"></i> Limpiar</button>
   </div>
   <div class="form-group">
     <h3>Obtener Alumnos por Docente</h3>
@@ -17,10 +20,12 @@
       </select>
     </div>
   
-    <button class="btn btn-primary mt-3" (click)="buscarAlumnos()">Buscar Alumnos</button>
+    <button class="btn btn-primary mt-3" (click)="buscarAlumnos()">
+      <i class="bi bi-search"></i> Buscar Alumnos
+    </button>
     
   
-    <!-- Mostrar la lista de alumnos si los hay -->
+    <!-- Muestra la lista de alumnos si los hay -->
     <div *ngIf="alumnos.length > 0">
       <h4>Lista de Alumnos</h4>
       <ul>
@@ -30,7 +35,7 @@
   </div>
   
   <!-- Tabla para mostrar los cursos -->
-  <h2>Lista de Cursos</h2>
+  <h2 class="text-center">Lista de Cursos</h2>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -47,10 +52,10 @@
     <tbody>
       <tr *ngFor="let curso of cursos">
         <td>{{ curso.id }}</td>
-        <td>{{ curso.tema?.nombre || 'Sin tema asignado' }}</td> <!-- Uso de ?. -->
+        <td>{{ curso.tema.nombre || 'Sin tema asignado' }}</td> <!-- Uso de ?. -->
         <td>{{ curso.fechaInicio }}</td>
         <td>{{ curso.fechaFin }}</td>
-        <td>{{ curso.docente_legajo?.nombre || 'Sin docente asignado' }}</td> <!-- Uso de ?. -->
+        <td>{{ curso.docente_legajo.nombre || 'Sin docente asignado' }}</td> <!-- Uso de ?. -->
         <td>{{ curso.precio }}</td>
         <td>
           <ul>
@@ -58,11 +63,14 @@
           </ul>
         </td>
         <td>
-          <button class="btn btn-info btn-sm" (click)="editarCurso(curso.id)">Editar</button>
-          <button class="btn btn-danger btn-sm" (click)="eliminarCurso(curso.id)">Eliminar</button>
+          <button class="btn btn-info btn-sm" (click)="editarCurso(curso.id)"> <i class="bi bi-pencil"></i> Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="eliminarCurso(curso.id)"> <i class="bi bi-trash"></i> Eliminar</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <button class="btn btn-primary mb-3" (click)="agregarCurso()">Agregar Curso</button>
+  <button class="btn btn-primary mb-3" (click)="agregarCurso()">
+    <i class="bi bi-plus-circle"></i>     Agregar Curso
+  </button>
+  
 </div>

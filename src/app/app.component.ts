@@ -19,6 +19,7 @@ export class AppComponent {
   constructor(
   private router:Router
   ){}
+  //Funciones que me dirigen al endpoint en base al boton que se seleccione
   iraCursos():void{
     this.router.navigate(['/cursos'])
   }

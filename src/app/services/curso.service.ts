@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Curso } from '../models/curso.model';
-import { Alumno } from '../models/alumno.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CursoService {
-  private apiUrl = 'http://localhost:8080/cursos'; 
+  private apiUrl = 'http://localhost:8080/cursos'; // Me conecto con el Backend
 
   constructor(private http: HttpClient) { }
  // Obtener todos los Cursos
@@ -16,7 +16,7 @@ export class CursoService {
   return this.http.get<Curso[]>(`${this.apiUrl}`);
   }
 
-// Obtener un docente por legajo
+// Obtener un docente por ID
   obtenerCursoPorId(id: number): Observable<Curso> {
   return this.http.get<Curso>(`${this.apiUrl}/${id}`);
   } 
