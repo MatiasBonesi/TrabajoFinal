@@ -1,4 +1,4 @@
-<h2 class="text-center">{{ isEdit ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
+<h2 class="text-center">{{ editar ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
 
 <form class="form-group" #f="ngForm" (ngSubmit)="f.form.valid && guardarAlumno()">
   <label for="nombre">Nombre</label>
@@ -12,7 +12,7 @@
     minlength="3"
     maxlength="30"
     #nombre="ngModel"
-    pattern="^[a-zA-Z\s]+$"
+    pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$" 
   required />
   <div *ngIf="f.submitted && nombre.errors" class="invalid-feedback">
     <div *ngIf="nombre.errors['required']">El nombre es obligatorio.</div>
@@ -30,7 +30,7 @@
   [max]="fechaMaxima"
   required
    />
-  <button  class="btn btn-primary" type="submit" [disabled]="f.invalid"><i class="fas fa-check"></i> {{ isEdit? 'Actualizar' : 'Agregar' }}</button>
+  <button  class="btn btn-primary" type="submit" [disabled]="f.invalid"><i class="fas fa-check"></i> {{ editar? 'Actualizar' : 'Agregar' }}</button>
   <button (click)="volver()" class="btn btn-secondary" >  <i class="fas fa-arrow-left"></i> volver</button>
   <button type="reset" class="btn btn-danger btn-sm" id="reseteo"><i class="bi bi-x-circle"></i>  Reset </button>
 </form>

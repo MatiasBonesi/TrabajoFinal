@@ -3,7 +3,7 @@
     
 
     
-    <!-- Tabla para mostrar los Docentes -->
+    <!-- Tabla de los docentes -->
     <table class="table table-striped">
       <thead>
         <tr>
@@ -13,6 +13,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Muestro cada uno de los docentes -->
         <tr *ngFor="let docente of docentes">
           <td>{{ docente.legajo }}</td>
           <td>{{ docente.nombre }}</td>

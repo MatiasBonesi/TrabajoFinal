@@ -9,13 +9,13 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-tema-form',
   standalone: true,
-  imports: [FormsModule,CommonModule,TemaFormComponent],
+  imports: [FormsModule,CommonModule],
   templateUrl: './tema-form.component.html',
   styleUrl: './tema-form.component.css'
 })
 export class TemaFormComponent implements OnInit{
-  tema: Tema = { id:0,nombre: '', descripcion: '' };
-  isEdit: boolean = false;
+  tema: Tema = { id:0,nombre: '', descripcion: '' }; //Variable tema inicializada 
+  editar: boolean = false; //Bandera para saber si esta editando un tema(True) o lo esta agregando(False) 
 
   constructor(
     private temaService: TemaService,
@@ -24,17 +24,17 @@ export class TemaFormComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id'); //Realizamos esto para saber si esta editando un tema, pues en la funcion de lista de temas al tocar editar le pasamos por endpoint el id del tema
     if (id) {
-      this.isEdit = true;
+      this.editar = true; //Estamos editando un tema
       this.temaService.obtenerTemaPorId(Number(id)).subscribe((data: Tema) => {
-        this.tema = data;
+        this.tema = data; //Traemos los datos de ese tema
       });
     }
   }
 
   guardarTema(): void {
-    if (this.isEdit) {
+    if (this.editar) {
       this.temaService.actualizarTema(this.tema.id, this.tema).subscribe(() => {
         this.router.navigate(['/temas']);
       });

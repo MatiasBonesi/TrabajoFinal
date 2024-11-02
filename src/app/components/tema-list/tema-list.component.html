@@ -12,12 +12,13 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Por cada tema dentro de la lista de temas los va mostrando -->
         <tr *ngFor="let tema of temas">
           <td>{{ tema.id }}</td>
           <td>{{ tema.nombre }}</td>
           <td>{{ tema.descripcion }}</td>
           <td>
-            <!-- Botones de acción -->
+            <!-- Botones de acción que ejecutan la funcion declarada en el ts -->
             <button class="btn btn-info btn-sm" (click)="editarTema(tema.id)"><i class="bi bi-pencil"></i> Editar</button>
             <button class="btn btn-danger btn-sm" (click)="eliminarTema(tema.id)"><i class="bi bi-trash"></i> Eliminar</button>
           </td>

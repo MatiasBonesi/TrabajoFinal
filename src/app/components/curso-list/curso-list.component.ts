@@ -18,12 +18,12 @@ import { Observable } from 'rxjs';
   styleUrl: './curso-list.component.css'
 })
 export class CursoListComponent implements OnInit {
-  cursos: Curso[] = [];
-  filtroFechaFin: Date = new Date; // Para almacenar la fecha seleccionada
-  selectedLegajo: number = 0;  // Cambiado a número
+  cursos: Curso[] = []; //Inicializo una lista de cursos
+  filtroFechaFin: Date = new Date; //fecha seleccionada
+  selectedLegajo: number = 0;  // Legajo seleccionado
   docentes: Docente[] = [];
   alumnos: String[] = [];
-  docentes$: Observable<Docente[]> | undefined;
+  docentes$: Observable<Docente[]> | undefined; //Defino a la entidad de Docente
 
   constructor(
     private cursoService: CursoService,
@@ -32,8 +32,8 @@ export class CursoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cargarCursos();
-    this.docentes$ = this.docenteService.obtenerTodosLosDocentes();
+    this.cargarCursos(); //Cargo los cursos
+    this.docentes$ = this.docenteService.obtenerTodosLosDocentes(); //Traigo todos los docentes
   }
   cargarCursos(): void {
     this.cursoService.obtenerTodosLosCursos().subscribe(
@@ -80,7 +80,7 @@ export class CursoListComponent implements OnInit {
   eliminarCurso(id: number): void {
     this.cursoService.eliminarCurso(id).subscribe(
       () => {
-        this.cursos = this.cursos.filter(curso => curso.id !== id);
+        this.cargarCursos();
       },
       error => {
         console.error('Error al eliminar el Curso:', error);

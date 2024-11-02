@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AlumnoFormComponent implements OnInit {
   alumno: Alumno = { id: 0, nombre: '', fechaNacimiento: new Date() };
-  isEdit:boolean = false; 
+  editar:boolean = false; 
   fechaMaxima: string='';
 
 
@@ -24,7 +24,7 @@ export class AlumnoFormComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id'); 
     //Si obtengo el id a traves de la url es porque esta editando un alumno
     if (id) {
-      this.isEdit = true; //Modifico el isEdit a true
+      this.editar = true; //Modifico el editar a true
       this.alumnoService.obtenerUnAlumno(Number(id)).subscribe((data: Alumno) => {
         this.alumno = data; //Traigo los datos de ese alumno
       });
@@ -32,12 +32,14 @@ export class AlumnoFormComponent implements OnInit {
   }
   //Establece la fecha actual
   setFechaMaxima(): void {
+    const edadPermitida = 18;
     const hoy = new Date();
+    hoy.setFullYear(hoy.getFullYear() - edadPermitida); // Resta 18 años a la fecha actual
     this.fechaMaxima = hoy.toISOString().split('T')[0]; // Usa el formato 'yyyy-MM-dd'
   }
   
   guardarAlumno():void {
-    if (this.isEdit) {
+    if (this.editar) {
       this.alumnoService.actualizarAlumno(this.alumno.id, this.alumno).subscribe(() => {
         this.router.navigate(['/alumnos']);
       });

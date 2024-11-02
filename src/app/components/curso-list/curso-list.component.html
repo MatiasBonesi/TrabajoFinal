@@ -2,6 +2,7 @@
   
   
   <div class="form-group">
+    <!-- Filtro para buscar por fecha de finalizacion de cursos -->
     <h2 for="buscarFechaFin">Buscar cursos por Fecha de Finalización</h2>
     <input class="form-control" id="buscarFechaFin" [(ngModel)]="filtroFechaFin" name="buscarFechaFin" type="date">
     <button class="btn btn-primary mt-2" (click)="buscarCursosPorFecha()">
@@ -14,7 +15,7 @@
     
     <div class="form-group">
       <label for="legajo">Seleccionar Docente</label>
-      <!-- Dropdown para seleccionar el legajo del docente -->
+      <!-- Lista para seleccionar el legajo del docente -->
       <select class="form-control" id="docente" [(ngModel)]="selectedLegajo" name="docente" required>
         <option *ngFor="let docente of docentes$ | async" [ngValue]="docente.legajo">{{ docente.nombre }}</option>
       </select>
@@ -25,7 +26,7 @@
     </button>
     
   
-    <!-- Muestra la lista de alumnos si los hay -->
+    <!-- Muestra la lista de alumnos del docente -->
     <div *ngIf="alumnos.length > 0">
       <h4>Lista de Alumnos</h4>
       <ul>
@@ -52,10 +53,10 @@
     <tbody>
       <tr *ngFor="let curso of cursos">
         <td>{{ curso.id }}</td>
-        <td>{{ curso.tema.nombre || 'Sin tema asignado' }}</td> <!-- Uso de ?. -->
+        <td>{{ curso.tema.nombre || 'Sin tema asignado' }}</td> 
         <td>{{ curso.fechaInicio }}</td>
         <td>{{ curso.fechaFin }}</td>
-        <td>{{ curso.docente_legajo.nombre || 'Sin docente asignado' }}</td> <!-- Uso de ?. -->
+        <td>{{ curso.docente_legajo.nombre || 'Sin docente asignado' }}</td> 
         <td>{{ curso.precio }}</td>
         <td>
           <ul>

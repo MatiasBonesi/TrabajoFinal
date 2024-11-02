@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tema-list.component.css'
 })
 export class TemaListComponent implements OnInit{
-  temas: Tema[] = [];
+  temas: Tema[] = [];// Inicializamos la lista de temas
 
   constructor(
     private temaService: TemaService,
@@ -21,7 +21,7 @@ export class TemaListComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-    this.cargarTemas();
+    this.cargarTemas();//Al iniciar se realiza la funcion cargar los temas
   }
 
   cargarTemas(): void {
@@ -46,7 +46,7 @@ export class TemaListComponent implements OnInit{
   eliminarTema(id: number): void {
     this.temaService.eliminarTema(id).subscribe(
       () => {
-        this.temas = this.temas.filter(tema => tema.id !== id);
+        this.cargarTemas(); // Recarga la lista después de eliminar
       },
       error => {
         if (error.status === 500) {

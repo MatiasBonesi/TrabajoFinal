@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './docente-form.component.css'
 })
 export class DocenteFormComponent {
-  docente: Docente = { legajo:0,nombre: ''};
-  isEdit: boolean = false;
+  docente: Docente = { legajo:0,nombre: ''};//Inicializo la variable docente
+  editar: boolean = false;//Bandera para saber si esta editando un docente(True) o lo esta agregando(False) 
 
   constructor(
     private docenteService: DocenteService,
@@ -25,7 +25,7 @@ export class DocenteFormComponent {
   ngOnInit(): void {
     const legajo = this.route.snapshot.paramMap.get('legajo');
     if (legajo) {
-      this.isEdit = true;
+      this.editar = true;
       this.docenteService.obtenerDocentePorLegajo(Number(legajo)).subscribe((data: Docente) => {
         this.docente = data;
       });
@@ -33,7 +33,7 @@ export class DocenteFormComponent {
   }
 
   guardarDocente(): void {
-    if (this.isEdit) {
+    if (this.editar) {
       this.docenteService.actualizarDocente(this.docente.legajo, this.docente).subscribe(() => {
         this.router.navigate(['/docentes']);
       });

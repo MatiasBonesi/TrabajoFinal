@@ -30,7 +30,7 @@ export class AlumnoListComponent implements OnInit {
   }
 
   editarAlumno(id: number) {
-    this.router.navigate([`/alumnos/editar/${id}`]);
+    this.router.navigate([`/alumnos/editar/${id}`]);//Se le pasa al endpoint el id del estudiante
   }
   //Elimina el alumno
   eliminarAlumno(id: number) {
@@ -39,7 +39,7 @@ export class AlumnoListComponent implements OnInit {
         this.cargarAlumnos(); // Recarga la lista después de eliminar
       },
       error => {
-        if (error.status === 500) {
+        if (error.status === 500) { //Esto es especialmente para el caso en el que un alumno este dentro de un curso y justamente por esto no pueda ser eliminado
           alert("No puede eliminar este alumno porque se encuentra en un curso.");
         } else {
           console.error("Error al eliminar el alumno:", error);

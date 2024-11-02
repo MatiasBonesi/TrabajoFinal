@@ -1,9 +1,10 @@
 <div class="container">
-  <h2>{{ isEdit ? 'Editar Docente' : 'Agregar Docente' }}</h2>
+  <!-- Si se esta editando saldra el titulo Editar Docente -->
+  <h2>{{ editar ? 'Editar Docente' : 'Agregar Docente' }}</h2>
   <form class="form-group"  #f="ngForm" (ngSubmit)="f.form.valid && guardarDocente()">
       
         <label for="nombre">Nombre</label>
-        <!-- Agregamos la referencia #nombre para acceder a los errores del campo -->
+        <!-- Agregamos la referencia name="nombre" para acceder a los errores -->
         <input
             type="text"
             class="form-control"
@@ -15,10 +16,10 @@
             minlength="3"
             maxlength="30"
             #nombre="ngModel"
-            pattern="^[a-zA-Z\s]+$"
+            pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$" 
             [ngClass]="{ 'is-invalid': f.submitted && nombre.invalid }"
         />
-        <!-- Accedemos a los errores usando la referencia #nombre -->
+        <!-- Accedemos a los errores usando la referencia nombre -->
         <div *ngIf="f.submitted && nombre.errors" class="invalid-feedback">
             <div *ngIf="nombre.errors['required']">El nombre es obligatorio.</div>
             <div *ngIf="nombre.errors['minlength']">El nombre debe tener al menos 3 caracteres.</div>
@@ -27,7 +28,7 @@
         </div>
       
 
-      <button type="submit" class="btn btn-primary" [disabled]="f.invalid"><i class="fas fa-check"></i> {{ isEdit ? 'Actualizar' : 'Guardar' }}</button>
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid"><i class="fas fa-check"></i> {{ editar ? 'Actualizar' : 'Guardar' }}</button>
       <button (click)="volver()" class="btn btn-secondary" > <i class="fas fa-arrow-left"></i> volver</button>
       <button type="reset" class="btn btn-danger btn-sm" id="reseteo"><i class="bi bi-x-circle"></i>  Reset </button>
   </form>

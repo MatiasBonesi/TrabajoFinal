@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
   styleUrl: './docente-list.component.css'
 })
 export class DocenteListComponent implements OnInit{
-docentes: Docente[] = [];
+docentes: Docente[] = []; //Inicializamos la lista de docentes
 constructor(
   private docenteService: DocenteService,
   private router: Router
 ) { }
 ngOnInit(): void {
-  this.cargarDocentes();
+  this.cargarDocentes(); //Al iniciar realizo la carga de docentes
 }
 cargarDocentes(): void {
   this.docenteService.obtenerTodosLosDocentes().subscribe(
@@ -35,13 +35,13 @@ agregarDocente(): void {
 }
 
 editarDocente(legajo: number): void {
-  this.router.navigate([`/docentes/editar/${legajo}`]);
+  this.router.navigate([`/docentes/editar/${legajo}`]);//En caso que se edite el docente paso su legajo por el endpoint
 }
 
 eliminarDocente(legajo: number): void {
   this.docenteService.eliminarDocente(legajo).subscribe(
     () => {
-      this.docentes = this.docentes.filter(docente => docente.legajo !== legajo);
+      this.cargarDocentes();//Recarga la lista de docentes
     },
     error => {
       if (error.status === 500) {

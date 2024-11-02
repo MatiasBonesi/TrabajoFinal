@@ -1,6 +1,7 @@
 <div class="container">
 <h2 class="text-center">Lista de Alumnos</h2>
 <br>
+<!-- Tabla para mostrar los Alumnos -->
 <table class="table table-striped">
   <thead>
     <tr>
@@ -11,11 +12,13 @@
     </tr>
   </thead>
   <tbody>
+    <!-- Por cada alumno dentro de la lista de alumnos los va mostrando -->
     <tr *ngFor="let alumno of alumnos">
       <td>{{ alumno.id }}</td>
       <td>{{ alumno.nombre }}</td>
       <td>{{ alumno.fechaNacimiento | date: 'dd/MM/yyyy' }}</td>
       <td>
+        <!-- Botones de acción que ejecutan la funcion declarada en el ts -->
         <button class="btn btn-info btn-sm" (click)="editarAlumno(alumno.id)"> <i class="bi bi-pencil"></i> Editar</button>
         <button class="btn btn-danger btn-sm" (click)="eliminarAlumno(alumno.id)"><i class="bi bi-trash"></i> Eliminar</button>
       </td>

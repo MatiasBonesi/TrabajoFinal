@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>{{ isEdit ? 'Editar Curso' : 'Agregar Curso' }}</h2>
+  <h2>{{ editar ? 'Editar Curso' : 'Agregar Curso' }}</h2>
   <form #f="ngForm" (ngSubmit)="f.form.valid && guardarCurso()">
     
     <div class="form-group">
@@ -93,7 +93,7 @@
     </div>
     
     <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
-      <i class="fas fa-check"></i> {{ isEdit ? 'Actualizar' : 'Guardar' }}
+      <i class="fas fa-check"></i> {{ editar ? 'Actualizar' : 'Guardar' }}
     </button>
     <button (click)="volver()" class="btn btn-secondary" >  <i class="fas fa-arrow-left"></i> volver</button>
     <button type="reset" class="btn btn-danger btn-sm" id="reseteo"><i class="bi bi-x-circle"></i>  Reset </button>

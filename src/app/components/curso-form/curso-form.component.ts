@@ -27,13 +27,13 @@ export class CursoFormComponent implements OnInit {
     fechaFin: new Date(),
     docente_legajo: new Docente(),
     precio: 0,
-    alumnos: []  // Inicializamos con un array vacío
-  };
-  isEdit: boolean = false;
+    alumnos: []  
+  }; //Inicializo una variable curso
+  editar: boolean = false;
 
-  temas$: Observable<Tema[]> | undefined;  // Ahora puede ser undefined
-  docentes$: Observable<Docente[]> | undefined;  // Ahora puede ser undefined
-  alumnos$: Observable<Alumno[]> | undefined;  // Ahora puede ser undefined
+  temas$: Observable<Tema[]> | undefined;  // Puede ser undefined
+  docentes$: Observable<Docente[]> | undefined;  // Puede ser undefined
+  alumnos$: Observable<Alumno[]> | undefined;  // Puede ser undefined
 
   constructor(
     private cursoService: CursoService,
@@ -53,7 +53,7 @@ export class CursoFormComponent implements OnInit {
     // Verificar si es edición
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.isEdit = true;
+      this.editar = true;
       this.cursoService.obtenerCursoPorId(Number(id)).subscribe((data: Curso) => {
         this.curso = data;
       });
@@ -70,7 +70,7 @@ export class CursoFormComponent implements OnInit {
     }
   }
   guardarCurso(): void {
-    if (this.isEdit) {
+    if (this.editar) {
       this.cursoService.actualizarCurso(this.curso.id, this.curso).subscribe(() => {
         this.router.navigate(['/cursos']);
       });
